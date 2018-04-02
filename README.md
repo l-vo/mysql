@@ -1,6 +1,11 @@
 tutum-docker-mysql
 ==================
 
+Disclaimer
+----------
+This is a fork of Tutum's mysql docker project (https://github.com/tutumcloud/mysql) which is not maintened anymore. Some minor features was added to the original project.
+
+
 [![Deploy to Tutum](https://s.tutum.co/deploy-to-tutum.svg)](https://dashboard.tutum.co/stack/deploy/)
 
 Base docker image to run a MySQL database server

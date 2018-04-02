@@ -28,8 +28,14 @@ ENV MYSQL_USER=admin \
 # Volume for initialization et replication flags
 RUN mkdir /flags
 
+# Use user without root privileges
+RUN adduser --disabled-password --gecos "" user1
+RUN echo "user1 ALL = (root) NOPASSWD: /run.sh" >> /etc/sudoers
+RUN echo "user1 ALL = (root) NOPASSWD: /import_sql.sh" >> /etc/sudoers
+USER user1
+
 # Add VOLUMEs to allow backup of config and databases
 VOLUME  ["/etc/mysql", "/var/lib/mysql", "/flags"]
 
 EXPOSE 3306
-CMD ["/run.sh"]
+CMD ["sudo", "/run.sh"]
