@@ -29,6 +29,18 @@ ENV MYSQL_USER=admin \
 # Volume for initialization et replication flags
 RUN mkdir /flags
 
+# Keep environment variables with sudo
+RUN echo "Defaults env_keep += \"MYSQL_USER\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"MYSQL_PASS\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"ON_CREATE_DB\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"REPLICATION_MASTER\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"REPLICATION_SLAVE\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"REPLICATION_USER\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"REPLICATION_PASS\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"EXTRA_OPTS\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"RANDOM\"" >>/etc/sudoers
+RUN echo "Defaults env_keep += \"STARTUP_SQL\"" >>/etc/sudoers
+
 # Use user without root privileges
 RUN adduser --disabled-password --gecos "" user1
 RUN echo "user1 ALL = (root) NOPASSWD: /run.sh" >> /etc/sudoers
