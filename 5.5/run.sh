@@ -187,4 +187,7 @@ if [ -n "${REPLICATION_SLAVE}" ]; then
     fi
 fi
 
+# Unset environment variable for security
+sudo -u user1 unset MYSQL_PASS
+
 fg
